@@ -1,5 +1,6 @@
 from selenium import webdriver
-import variables
+from selenium.webdriver.chrome.options import Options
+import e2e_variables
 import pytest
 from pages.login_page import LoginPage
 from pages.secure_page import SecurePage
@@ -10,8 +11,12 @@ class TestLoginPage:
     
     @pytest.fixture(scope="function", autouse=True)
     def setup(self, request):
-        driver = webdriver.Chrome()
-        driver.get(variables.LOGIN_URL)
+        chrome_options = Options()
+        if e2e_variables.RUN_HEADLESS == True:
+            chrome_options.add_argument("--headless=new")
+        chrome_options.add_argument("--window-size=1920,1080")
+        driver = webdriver.Chrome(options=chrome_options)
+        driver.get(e2e_variables.LOGIN_URL)
         request.cls.driver = driver
         yield
         driver.quit()
@@ -23,14 +28,14 @@ class TestLoginPage:
         
     def test_login_with_valid_credentials(self):
         login_page = LoginPage(self.driver)
-        login_page.login(variables.LOGIN_USERNAME, variables.LOGIN_PASSWORD)
+        login_page.login(e2e_variables.LOGIN_USERNAME, e2e_variables.LOGIN_PASSWORD)
         secure_page = SecurePage(self.driver)
         
         SecurePageAssertions(secure_page).assert_that_user_is_logged_in()
         
     def test_logout(self):
         login_page = LoginPage(self.driver)
-        login_page.login(variables.LOGIN_USERNAME, variables.LOGIN_PASSWORD)
+        login_page.login(e2e_variables.LOGIN_USERNAME, e2e_variables.LOGIN_PASSWORD)
         
         secure_page = SecurePage(self.driver)
         secure_page.logout()
