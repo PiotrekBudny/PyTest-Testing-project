@@ -28,7 +28,7 @@ class TestMultimeterMeasurment:
         
         BatteryAssertions.assert_that_car_battery_voltage_is_below_range(detected_voltage)
         
-    def test_measure_resistance_on_battery(self, multimeter_instance, valid_car_battery):
+    def test_error_when_measuring_resistance_on_battery(self, multimeter_instance, valid_car_battery):
         with pytest.raises(UnsupportedException):
             multimeter_instance.measure_resistance(valid_car_battery)
     
