@@ -19,27 +19,30 @@ It follows best practices such as the **Page Object Model** for UI tests, uses a
 - **E2E UI Testing**
   - Uses Selenium WebDriver and pytest for browser automation.
   - Implements the Page Object Model for maintainable UI tests.
+  - Supports headless browser mode for CI and local runs.
   - Example tests for login, logout, and error handling.
 
 ## Project Structure
 
 ```
 api/
-  api_tests.py           # API test cases
+  test_api.py           # API test cases
   api_route_builder.py   # Helper for building API URLs
   models/                # Data models for requests/responses
   api_assertions.py      # Assertion helpers for API responses
 
 e2e/
-  e2e_tests.py           # E2E UI test cases
+  test_e2e.py            # E2E UI test cases
   pages/                 # Page Object Model classes
   assertions/            # Assertion helpers for UI tests
 
 unittests/
-  multimeter_tests.py    # Unit tests for multimeter and battery
+  test_multimeter.py     # Unit tests for multimeter and battery
   multimeter/            # Multimeter logic, components, and utils
 
-variables.py             # Configuration (API base URL, login credentials, etc.)
+api_variables.py         # Configuration (API base URL, login credentials, etc.)
+e2e_variables.py         # Configuration for E2E tests (login URL, credentials, headless mode)
+requirements.txt         # Project dependencies
 ```
 
 ## Getting Started
@@ -49,24 +52,63 @@ variables.py             # Configuration (API base URL, login credentials, etc.)
    pip install -r requirements.txt
    ```
 
-2. **Run API tests:**
+2. **Run all tests:**
    ```
-   pytest api/api_tests.py
+   pytest
    ```
 
-3. **Run E2E tests:**
+3. **Run API tests only:**
    ```
-   pytest e2e/e2e_tests.py
+   pytest api/
+   ```
+
+4. **Run E2E tests (headless by default):**
+   ```
+   pytest e2e/
    ```
    > For E2E tests, make sure you have [ChromeDriver](https://sites.google.com/chromium.org/driver/) installed and available in your PATH.
 
-4. **Run Unit tests:**
+5. **Run Unit tests:**
    ```
-   pytest unittests/multimeter_tests.py
+   pytest unittests/
    ```
 
 ## Customization
 
-- Update `variables.py` with your API base URL and test credentials as needed.
+- Update `api_variables.py` and `e2e_variables.py` with your API base URL, test credentials, and E2E settings as needed.
 - Add or modify Page Object classes in `e2e/pages/` for your application’s UI.
 - Extend unit tests and components in `unittests/multimeter/` as your logic grows.
+
+## Continuous Integration
+
+You can use GitHub Actions for free CI. Add this workflow to `.github/workflows/python-tests.yml`:
+
+```yaml
+name: Python package
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run all tests
+      run: pytest -v
+```
