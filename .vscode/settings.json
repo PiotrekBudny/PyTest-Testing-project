@@ -1,5 +1,7 @@
 {
     "python.analysis.extraPaths": [
-        "./api/models"
+        "./api/models",
+        "./unittests/multimeter/utils",
+        "./unittests/multimeter/components/utils"
     ]
 }

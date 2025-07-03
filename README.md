@@ -1,7 +1,7 @@
 # PyTest-Testing-Project
 
-This project demonstrates **API** and **end-to-end (E2E) UI testing** in Python using [pytest](https://pytest.org/), [requests](https://docs.python-requests.org/), and [Selenium WebDriver](https://www.selenium.dev/).  
-It follows best practices such as the **Page Object Model** for UI tests and uses assertion helper classes for clean, maintainable code.
+This project demonstrates **API**, **unit**, and **end-to-end (E2E) UI testing** in Python using [pytest](https://pytest.org/), [requests](https://docs.python-requests.org/), and [Selenium WebDriver](https://www.selenium.dev/).  
+It follows best practices such as the **Page Object Model** for UI tests, uses assertion helper classes for clean, maintainable code, and includes realistic simulation and exception handling for unit tests.
 
 ## Features
 
@@ -9,6 +9,12 @@ It follows best practices such as the **Page Object Model** for UI tests and use
   - Uses `requests` and `pytest` to test the [JSONPlaceholder](https://jsonplaceholder.typicode.com/) fake REST API.
   - Includes tests for GET, POST, and error scenarios.
   - Assertion helpers for validating API responses.
+
+- **Unit Testing**
+  - Tests for core logic, such as a simulated `Multimeter` and `Battery` components.
+  - Uses fixtures to set up test data and objects.
+  - Custom exceptions and assertion helpers for domain-specific checks.
+  - Simulates realistic measurement values.
 
 - **E2E UI Testing**
   - Uses Selenium WebDriver and pytest for browser automation.
@@ -28,6 +34,10 @@ e2e/
   e2e_tests.py           # E2E UI test cases
   pages/                 # Page Object Model classes
   assertions/            # Assertion helpers for UI tests
+
+unittests/
+  multimeter_tests.py    # Unit tests for multimeter and battery
+  multimeter/            # Multimeter logic, components, and utils
 
 variables.py             # Configuration (API base URL, login credentials, etc.)
 ```
@@ -50,9 +60,13 @@ variables.py             # Configuration (API base URL, login credentials, etc.)
    ```
    > For E2E tests, make sure you have [ChromeDriver](https://sites.google.com/chromium.org/driver/) installed and available in your PATH.
 
+4. **Run Unit tests:**
+   ```
+   pytest unittests/multimeter_tests.py
+   ```
+
 ## Customization
 
 - Update `variables.py` with your API base URL and test credentials as needed.
 - Add or modify Page Object classes in `e2e/pages/` for your application’s UI.
-
-##
+- Extend unit tests and components in `unittests/multimeter/` as your logic grows.
