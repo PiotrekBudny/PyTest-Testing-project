@@ -1,4 +1,4 @@
-import api_variables
+from api import api_variables
 
 def build_get_post_by_id_route(post_id):    
     return f"{api_variables.API_BASE_URL}/posts/{post_id}"

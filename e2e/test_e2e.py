@@ -1,11 +1,11 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-import e2e_variables
+from e2e import e2e_variables
 import pytest
-from pages.login_page import LoginPage
-from pages.secure_page import SecurePage
-from assertions.login_page_assertions import LoginPageAssertions
-from assertions.secure_page_assertions import SecurePageAssertions
+from e2e.pages.login_page import LoginPage
+from e2e.pages.secure_page import SecurePage
+from e2e.assertions.login_page_assertions import LoginPageAssertions
+from e2e.assertions.secure_page_assertions import SecurePageAssertions
 
 class TestLoginPage:
     

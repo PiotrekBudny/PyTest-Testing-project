@@ -1,8 +1,8 @@
 import requests
 import pytest
-import api_route_builder
-from models.create_post_request import CreatePostRequest
-from api_assertions import ApiAssertions
+from api import api_route_builder
+from api.models.create_post_request import CreatePostRequest
+from api.api_assertions import ApiAssertions
 
 class TestJsonPlaceholderAPI:
     
