@@ -1,4 +1,4 @@
-from .unsupported_component_exception import UnsupportedException
+from unittests.multimeter.unsupported_component_exception import UnsupportedException
 
 class Multimeter:
     def measure_voltage(self, component) -> float:

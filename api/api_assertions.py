@@ -1,4 +1,4 @@
-from models.post_response import PostResponse
+from api.models.post_response import PostResponse
 
 class ApiAssertions:
     def __init__(self, response):

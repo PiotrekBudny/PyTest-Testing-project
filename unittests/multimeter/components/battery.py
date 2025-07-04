@@ -1,4 +1,4 @@
-from .utils.realistic_voltage_simulator import RealisticVoltageSimulator
+from unittests.multimeter.components.utils.realistic_voltage_simulator import RealisticVoltageSimulator
 
 class Battery:
     def __init__(self, nominal_voltage, measurement_should_be_valid):

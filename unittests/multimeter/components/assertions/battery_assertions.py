@@ -1,4 +1,3 @@
-
 class BatteryAssertions:
     
     def assert_that_car_battery_voltage_is_in_range(detected_voltage):

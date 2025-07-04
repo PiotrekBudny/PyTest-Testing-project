@@ -1,8 +1,8 @@
-from multimeter.multimeter import Multimeter
-from multimeter.components.battery import Battery
+from unittests.multimeter.multimeter import Multimeter
+from unittests.multimeter.components.battery import Battery
 import pytest
-from multimeter.components.assertions.battery_assertions import BatteryAssertions
-from multimeter.unsupported_component_exception import UnsupportedException
+from unittests.multimeter.components.assertions.battery_assertions import BatteryAssertions
+from unittests.multimeter.unsupported_component_exception import UnsupportedException
 
 class TestMultimeterMeasurment:
     
