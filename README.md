@@ -15,6 +15,7 @@ It follows best practices such as the **Page Object Model** for UI tests, uses a
   - Uses fixtures to set up test data and objects.
   - Custom exceptions and assertion helpers for domain-specific checks.
   - Simulates realistic measurement values.
+  - Tests for mocked api handler when lotto api responses are fake.
 
 - **E2E UI Testing**
   - Uses Selenium WebDriver and pytest for browser automation.
@@ -37,8 +38,10 @@ e2e/
   assertions/            # Assertion helpers for UI tests
 
 unittests/
-  test_multimeter.py     # Unit tests for multimeter and battery
   multimeter/            # Multimeter logic, components, and utils
+    test_multimeter.py   # Unit tests for multimeter and battery
+  mockedapi/             # Mocked lotto api logic, utils
+    test_mockedapi.py    # Unit tests for mocked lotto api handler
 
 api_variables.py         # Configuration (API base URL, login credentials, etc.)
 e2e_variables.py         # Configuration for E2E tests (login URL, credentials, headless mode)
@@ -77,7 +80,7 @@ requirements.txt         # Project dependencies
 
 - Update `api_variables.py` and `e2e_variables.py` with your API base URL, test credentials, and E2E settings as needed.
 - Add or modify Page Object classes in `e2e/pages/` for your application’s UI.
-- Extend unit tests and components in `unittests/multimeter/` as your logic grows.
+- Extend unit tests and components in `unittests/multimeter/` and `unittests/mockedapi/` as your logic grows.
 
 ## Continuous Integration
 
