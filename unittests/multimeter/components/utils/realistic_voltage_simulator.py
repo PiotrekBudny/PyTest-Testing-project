@@ -1,9 +1,10 @@
 import random
 
+
 class RealisticVoltageSimulator:
-    
+
     def make_voltage_real(self, voltage, measurement_should_be_valid):
-        if measurement_should_be_valid == True:
+        if measurement_should_be_valid:
             min_v = max(0, voltage - 1)
             max_v = voltage + 1
             return round(random.uniform(min_v, max_v), 2)

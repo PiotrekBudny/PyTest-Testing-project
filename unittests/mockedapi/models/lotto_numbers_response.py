@@ -1,4 +1,4 @@
 class LottoNumbersResponse:
-    def __init__(self, numbers, isItBigWin):
+    def __init__(self, numbers, is_it_big_win):
         self.numbers = numbers
-        self.isItBigWin = isItBigWin
+        self.is_it_big_win = is_it_big_win

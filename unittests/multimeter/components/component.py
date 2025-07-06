@@ -1,9 +1,11 @@
-from typing import Protocol
+from abc import ABC, abstractmethod
 
 
-class VoltageMeasurable(Protocol):
+class Component(ABC):
+    @abstractmethod
     def get_voltage(self) -> float:
-        ...
+        pass
 
+    @abstractmethod
     def get_resistance(self) -> float:
-        ...
+        pass
