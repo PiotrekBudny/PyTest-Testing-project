@@ -1,4 +1,4 @@
-LOGIN_URL = "https://the-internet.herokuapp.com/login"
-LOGIN_USERNAME = "tomsmith"
-LOGIN_PASSWORD = "SuperSecretPassword!"
-RUN_HEADLESS = True
+LOGIN_URL: str = "https://the-internet.herokuapp.com/login"
+LOGIN_USERNAME: str = "tomsmith"
+LOGIN_PASSWORD: str = "SuperSecretPassword!"
+RUN_HEADLESS: bool = True

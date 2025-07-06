@@ -4,8 +4,9 @@ from api import api_route_builder
 from api.models.create_post_request import CreatePostRequest
 from api.api_assertions import ApiAssertions
 
+
 class TestJsonPlaceholderAPI:
-    
+
     @pytest.mark.parametrize("post_id", [1, 2, 3, 4, 5])
     def test_get_post_by_id_returns_200_and_correct_id(self, post_id):
         expected_http_status = 200
@@ -24,7 +25,7 @@ class TestJsonPlaceholderAPI:
         response = requests.get(url)
 
         ApiAssertions(response).assert_status_code(expected_http_status)
-        
+
     def test_get_post_by_id_returns_404_for_invalid_id(self):
         invalid_post_id = "invalid"
         expected_http_status = 404
@@ -47,7 +48,7 @@ class TestJsonPlaceholderAPI:
     def test_create_post_returns_201_for_valid_request(self):
         expected_http_status = 201
         url = api_route_builder.build_create_post_route()
-        create_post_request = CreatePostRequest(userId=1, title="Test Title", body="Test Body")
+        create_post_request = CreatePostRequest(user_id=1, title="Test Title", body="Test Body")
 
         response = requests.post(url, json=create_post_request.__dict__, headers={"Content-Type": "application/json"})
 
