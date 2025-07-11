@@ -1,6 +1,4 @@
 from unittests.multimeter.components.resistor_connection import ResistorConnection
-from unittests.multimeter.multimeter import Multimeter
-from unittests.multimeter.components.battery import Battery
 from unittests.multimeter.components.resistor import Resistor
 import pytest
 from unittests.multimeter.components.assertions.battery_assertions import BatteryAssertions
@@ -9,19 +7,6 @@ from unittests.multimeter.unsupported_component_exception import UnsupportedExce
 
 
 class TestMultimeterMeasurement:
-
-    @pytest.fixture
-    def multimeter_instance(self):
-        return Multimeter()
-
-    @pytest.fixture
-    def valid_car_battery(self):
-        return Battery(nominal_voltage=12, measurement_should_be_valid=True)
-
-    @pytest.fixture
-    def old_car_battery(self):
-        return Battery(nominal_voltage=12, measurement_should_be_valid=False)
-
     def test_valid_battery_measurement(self, multimeter_instance, valid_car_battery):
         detected_voltage = multimeter_instance.measure_voltage(valid_car_battery)
         BatteryAssertions().assert_that_car_battery_voltage_is_in_range(detected_voltage)
@@ -41,8 +26,9 @@ class TestMultimeterMeasurement:
         ResistorAssertions().assert_that_voltage_after_resistor_was_dropped_fully(voltage_after_drop)
 
     @pytest.mark.parametrize("incoming_voltage", [0.001, 1, 5, 12, 240])
-    def test_voltage_when_tapped_after_third_resistor(self, multimeter_instance, incoming_voltage):
-        resistor = Resistor([1.0, 2.0, 3.0, 5.0, 10.0], 3, incoming_voltage, ResistorConnection.PART_OF_DIVIDER)
+    def test_voltage_when_tapped_after_third_resistor(self, multimeter_instance, incoming_voltage,
+                                                      standard_resistors_set):
+        resistor = Resistor(standard_resistors_set, 3, incoming_voltage, ResistorConnection.PART_OF_DIVIDER)
         voltage_after_drop = multimeter_instance.measure_voltage(resistor)
         ResistorAssertions().assert_that_voltage_after_resistor_was_not_dropped_fully(voltage_after_drop)
 
