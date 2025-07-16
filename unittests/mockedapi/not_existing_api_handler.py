@@ -6,7 +6,7 @@ from unittests.mockedapi.utils.lotto_numbers_generator import LottoNumbersGenera
 
 class NotExistingApiHandler:
 
-    def get_winning_lotto_numbers(self, is_person_lucky):
+    def get_winning_lotto_numbers(self, is_person_lucky) -> tuple[int, LottoNumbersResponse]:
         url = not_existing_api_url_builder.get_winning_lotto_numbers_url(is_person_lucky)
 
         http_response = requests.get(url)
