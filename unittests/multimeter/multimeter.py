@@ -4,6 +4,7 @@ from typing import Protocol
 
 
 class Multimeter:
+
     def measure_voltage(self, component: Component) -> float:
         try:
             return component.get_voltage()
